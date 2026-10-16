@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#123b2d">
+<title>The Holly & Hearth — Christmas Drinks</title>
+<style>
+  :root {
+    --pine: #123b2d;
+    --pine-light: #1d5941;
+    --berry: #a8273b;
+    --gold: #e7c779;
+    --cream: #fff8e9;
+    --paper: #fffdf7;
+    --ink: #25372e;
+    --muted: #64756b;
+    --line: #e7deca;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; color: var(--ink);
+    background:
+      radial-gradient(circle at 10% 5%, rgba(231,199,121,.18), transparent 23rem),
+      radial-gradient(circle at 95% 35%, rgba(168,39,59,.08), transparent 24rem),
+      var(--cream);
+    font-family: Georgia, "Times New Roman", serif;
+  }
+  .topline { height: 8px; background: repeating-linear-gradient(90deg,var(--berry) 0 42px,var(--gold) 42px 48px,var(--pine) 48px 90px); }
+  header { text-align: center; padding: 38px 18px 28px; background: var(--pine); color: var(--cream); position: relative; overflow: hidden; }
+  header:before, header:after { content: "✦"; position:absolute; color:var(--gold); font-size:30px; opacity:.8; top:24px; }
+  header:before { left: max(8%, calc(50% - 280px)); }
+  header:after { right: max(8%, calc(50% - 280px)); }
+  .eyebrow { color: var(--gold); text-transform: uppercase; letter-spacing: .22em; font: 700 11px/1.5 Arial,sans-serif; }
+  h1 { margin: 9px 0 8px; font-size: clamp(2.5rem, 7vw, 4.6rem); font-weight: 500; line-height: 1; }
+  h1 span { color: var(--gold); font-style: italic; }
+  .subtitle { margin: 0 auto; max-width: 520px; line-height: 1.6; color: #f5ead2; font-size: 1.02rem; }
+  .garland { color: var(--gold); letter-spacing: .65em; font-size: 1.15rem; margin-top: 18px; }
+  main { width: min(980px, calc(100% - 28px)); margin: 26px auto 54px; }
+  .intro { text-align:center; margin: 0 auto 25px; max-width: 650px; line-height:1.7; }
+  .intro strong { color: var(--berry); }
+  .section-heading { display:flex; align-items:center; gap:12px; margin: 30px 0 14px; color:var(--pine); }
+  .section-heading:before,.section-heading:after { content:""; height:1px; flex:1; background:var(--line); }
+  .section-heading h2 { font-size:1.4rem; font-weight:500; margin:0; white-space:nowrap; }
+  .drinks { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+  .drink {
+    background:var(--paper); border:1px solid var(--line); border-radius:16px; padding:17px;
+    box-shadow:0 5px 18px rgba(28,55,41,.045); position:relative;
+  }
+  .drink-top { display:flex; gap:12px; align-items:flex-start; }
+  .emoji { width:47px; height:47px; flex:0 0 47px; display:grid; place-items:center; border-radius:14px; background:#f6edda; font-size:25px; }
+  .drink h3 { margin:1px 0 5px; color:var(--pine); font-size:1.16rem; font-weight:600; }
+  .drink p { margin:0; color:var(--muted); font: .9rem/1.5 Arial,sans-serif; }
+  .choose { display:flex; align-items:center; justify-content:space-between; gap:10px; border-top:1px dashed var(--line); margin-top:15px; padding-top:13px; font: .88rem Arial,sans-serif; }
+  .choose label { display:flex; align-items:center; gap:8px; cursor:pointer; }
+  input[type="checkbox"] { accent-color:var(--berry); width:17px; height:17px; }
+  .qty { display:flex; align-items:center; gap:7px; color:var(--muted); }
+  .qty input { width:58px; border:1px solid var(--line); border-radius:8px; padding:7px; background:white; color:var(--ink); }
+  .order-panel { background:var(--paper); border:1px solid var(--line); border-radius:18px; padding:clamp(18px,4vw,30px); margin-top:32px; box-shadow:0 8px 24px rgba(28,55,41,.06); }
+  .order-panel h2 { margin:0 0 7px; color:var(--pine); font-size:1.7rem; font-weight:500; }
+  .order-panel .hint { color:var(--muted); margin:0 0 22px; font: .9rem/1.6 Arial,sans-serif; }
+  .fields { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:15px; }
+  .field { display:flex; flex-direction:column; gap:7px; font: .9rem Arial,sans-serif; }
+  .field.full { grid-column:1/-1; }
+  .field label { font-weight:700; color:var(--pine); }
+  input[type="text"],input[type="email"],select,textarea {
+    width:100%; border:1px solid #d9d3c4; border-radius:10px; background:#fff; padding:12px 13px;
+    color:var(--ink); font: .95rem Arial,sans-serif;
+  }
+  textarea { min-height:100px; resize:vertical; }
+  input:focus,select:focus,textarea:focus { outline:3px solid rgba(231,199,121,.55); border-color:var(--pine-light); }
+  .summary { margin:18px 0; border-radius:12px; background:#f7f1e4; padding:13px 15px; font: .9rem/1.6 Arial,sans-serif; }
+  .summary strong { color:var(--pine); }
+  .submit-row { display:flex; align-items:center; flex-wrap:wrap; gap:14px; }
+  button { border:0; border-radius:999px; padding:14px 22px; color:white; background:var(--berry); font:700 .95rem Arial,sans-serif; cursor:pointer; box-shadow:0 4px 0 #7d1b2a; transition:transform .15s, background .15s; }
+  button:hover { background:#8f2032; transform:translateY(-1px); }
+  button:focus-visible { outline:3px solid var(--gold); outline-offset:3px; }
+  .privacy { color:var(--muted); font: .78rem/1.5 Arial,sans-serif; max-width:380px; }
+  footer { text-align:center; color:var(--muted); font-size:.9rem; padding:20px 12px 0; }
+  footer .stars { color:var(--berry); letter-spacing:.45em; margin-bottom:8px; }
+  .snow { color:var(--gold); }
+  @media (max-width:650px) {
+    .drinks { grid-template-columns:1fr; }
+    .fields { grid-template-columns:1fr; }
+    .field.full { grid-column:auto; }
+    header { padding-top:34px; }
+    header:before { left:8px; } header:after { right:8px; }
+  }
+  .fairy-lights { display:flex; justify-content:center; gap:clamp(12px,3vw,28px); padding:12px 8px 3px; background:#0b2c21; }
+  .bulb { width:10px; height:15px; border-radius:50% 50% 45% 45%; display:block; background:#f4d77c; box-shadow:0 0 12px currentColor; color:#f4d77c; animation:twinkle 1.8s ease-in-out infinite alternate; }
+  .bulb:nth-child(3n+2) { background:#e85a69; color:#e85a69; animation-delay:.45s; }
+  .bulb:nth-child(3n) { background:#6fc79a; color:#6fc79a; animation-delay:.9s; }
+  @keyframes twinkle { from { opacity:.55; filter:brightness(.8); } to { opacity:1; filter:brightness(1.35); } }
+  .countdown { display:inline-flex; align-items:center; gap:8px; margin-top:18px; padding:9px 14px; border:1px solid rgba(231,199,121,.5); border-radius:999px; color:#fff3d0; font: .86rem Arial,sans-serif; }
+  .countdown strong { color:var(--gold); font-variant-numeric:tabular-nums; }
+  #snow-layer { pointer-events:none; position:fixed; inset:0; z-index:20; overflow:hidden; }
+  .snowflake { position:absolute; top:-20px; color:#fff; text-shadow:0 0 5px rgba(255,255,255,.7); user-select:none; animation:fall linear forwards; }
+  @keyframes fall { to { transform:translate3d(var(--drift),110vh,0) rotate(360deg); opacity:.15; } }
+  .basket-title { display:flex; justify-content:space-between; align-items:center; gap:12px; }
+  .basket-count { background:var(--pine); color:white; border-radius:999px; padding:5px 10px; font:700 .78rem Arial,sans-serif; white-space:nowrap; }
+  .basket-lines { list-style:none; margin:8px 0 0; padding:0; }
+  .basket-lines li { display:flex; justify-content:space-between; gap:12px; padding:5px 0; border-bottom:1px solid #e9dfca; }
+  .basket-lines li:last-child { border-bottom:0; }
+  .confirmation { display:none; text-align:center; padding:clamp(25px,6vw,48px); margin-top:24px; border:1px solid #c8dfca; background:#f3fbf2; border-radius:18px; }
+  .confirmation.show { display:block; animation:pop-in .35s ease-out; }
+  .confirmation .big-check { font-size:3rem; }
+  .confirmation h2 { color:var(--pine); font-size:2rem; font-weight:500; margin:8px 0; }
+  .confirmation p { line-height:1.7; }
+  .confirmation button { margin-top:10px; }
+  @keyframes pop-in { from { opacity:0; transform:translateY(8px) scale(.98); } to { opacity:1; transform:translateY(0) scale(1); } }
+  @media (max-width:650px) { .bulb { width:8px; height:12px; } }
+  @media (prefers-reduced-motion: reduce) { html{scroll-behavior:auto} *,*:before,*:after{transition:none!important;animation:none!important} #snow-layer{display:none} }
+</style>
+</head>
+<body>
+<div class="topline"></div>
+<div class="fairy-lights" aria-hidden="true"><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span></div>
+<div id="snow-layer" aria-hidden="true"></div>
+<header>
+  <div class="eyebrow">A little Christmas magic</div>
+  <h1>The Holly <span>&</span> Hearth</h1>
+  <p class="subtitle">A festive little drinks menu for frosty evenings, twinkling lights and cosy moments.</p>
+  <div class="garland" aria-hidden="true">✦ ❄ ✦ ❄ ✦</div>
+  <div class="countdown">🎄 Christmas countdown <strong id="christmas-countdown">Loading…</strong></div>
+</header>
+
+<main>
+  <p class="intro">Pick your favourite <strong>seasonal sips</strong>, tell us how you'd like them, and send your order straight to the North Pole… well, to the menu maker!</p>
+
+  <form id="christmas-order" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+    <input type="hidden" name="_subject" value="A new order from The Holly & Hearth Christmas Drinks Menu">
+    <input type="hidden" name="Selected drinks" id="selected-drinks" value="">
+    <input type="hidden" name="Order summary" id="order-summary" value="">
+
+    <div class="section-heading"><h2>☕ Warm & Wonderful</h2></div>
+    <div class="drinks">
+      <article class="drink">
+        <div class="drink-top"><div class="emoji" aria-hidden="true">☕</div><div><h3>Classic Hot Chocolate</h3><p>Rich chocolate, fluffy marshmallows and a cloud of whipped cream.</p></div></div>
+        <div class="choose"><label><input type="checkbox" name="drink_hot_chocolate" value="Classic Hot Chocolate" data-name="Classic Hot Chocolate"> Add to order</label><label class="qty">Qty <input type="number" min="1" max="20" value="1" aria-label="Classic Hot Chocolate quantity" data-qty="drink_hot_chocolate"></label></div>
+      </article>
+      <article class="drink">
+        <div class="drink-top"><div class="emoji" aria-hidden="true">🍫</div><div><h3>Minty Snowcap Cocoa</h3><p>Chocolate with a cool peppermint twist and chocolate curls.</p></div></div>
+        <div class="choose"><label><input type="checkbox" name="drink_minty_cocoa" value="Minty Snowcap Cocoa" data-name="Minty Snowcap Cocoa"> Add to order</label><label class="qty">Qty <input type="number" min="1" max="20" value="1" aria-label="Minty Snowcap Cocoa quantity" data-qty="drink_minty_cocoa"></label></div>
+      </article>
+      <article class="drink">
+        <div class="drink-top"><div class="emoji" aria-hidden="true">🍎</div><div><h3>Spiced Apple Warmer</h3><p>Warm apple juice with cinnamon, orange and festive spice.</p></div></div>
+        <div class="choose"><label><input type="checkbox" name="drink_spiced_apple" value="Spiced Apple Warmer" data-name="Spiced Apple Warmer"> Add to order</label><label class="qty">Qty <input type="number" min="1" max="20" value="1" aria-label="Spiced Apple Warmer quantity" data-qty="drink_spiced_apple"></label></div>
+      </article>
+      <article class="drink">
+        <div class="drink-top"><div class="emoji" aria-hidden="true">🍵</div><div><h3>Gingerbread Latte</h3><p>Espresso and steamed milk with gingerbread syrup and a dusting of spice.</p></div></div>
+        <div class="choose"><label><input type="checkbox" name="drink_gingerbread_latte" value="Gingerbread Latte" data-name="Gingerbread Latte"> Add to order</label><label class="qty">Qty <input type="number" min="1" max="20" value="1" aria-label="Gingerbread Latte quantity" data-qty="drink_gingerbread_latte"></label></div>
+      </article>
+    </div>
+
+    <div class="section-heading"><h2>❄ Chilled & Cheerful</h2></div>
+    <div class="drinks">
+      <article class="drink">
+        <div class="drink-top"><div class="emoji" aria-hidden="true">🍓</div><div><h3>Winter Berry Fizz</h3><p>Berry cordial, sparkling lemonade and a few frozen berries.</p></div></div>
+        <div class="choose"><label><input type="checkbox" name="drink_berry_fizz" value="Winter Berry Fizz" data-name="Winter Berry Fizz"> Add to order</label><label class="qty">Qty <input type="number" min="1" max="20" value="1" aria-label="Winter Berry Fizz quantity" data-qty="drink_berry_fizz"></label></div>
+      </article>
+      <article class="drink">
+        <div class="drink-top"><div class="emoji" aria-hidden="true">🥤</div><div><h3>Frosty Vanilla Shake</h3><p>Creamy vanilla milkshake topped with festive sprinkles.</p></div></div>
+        <div class="choose"><label><input type="checkbox" name="drink_vanilla_shake" value="Frosty Vanilla Shake" data-name="Frosty Vanilla Shake"> Add to order</label><label class="qty">Qty <input type="number" min="1" max="20" value="1" aria-label="Frosty Vanilla Shake quantity" data-qty="drink_vanilla_shake"></label></div>
+      </article>
+    </div>
+
+    <section class="order-panel">
+      <h2>Make it merry ✨</h2>
+      <p class="hint">Add your details and any little tweaks. Fields marked * are required.</p>
+      <div class="fields">
+        <div class="field"><label for="customer-name">Your name *</label><input id="customer-name" name="Name" type="text" autocomplete="name" required placeholder="Santa… or your name"></div>
+<div class="field full"><label for="notes">Special requests or allergy notes</label><textarea id="notes" name="Special requests" placeholder="Any swaps, toppings or notes…"></textarea></div>
+      </div>
+      <div class="summary" aria-live="polite">
+        <div class="basket-title"><strong>🧺 Your festive basket</strong><span class="basket-count" id="basket-count">0 drinks</span></div>
+        <ul class="basket-lines" id="basket-lines"><li><span>Your basket is waiting for a little Christmas magic.</span><span>—</span></li></ul>
+        <span id="summary-text" hidden>Choose one or more drinks above to get started.</span>
+      </div>
+      <div class="submit-row">
+        <button type="submit">Send my festive order 🎄</button>
+        <span class="privacy">This demo sends the form to your Formspree inbox once you connect your own form endpoint below.</span>
+      </div>
+      <p id="form-message" role="status" aria-live="polite"></p>
+    </section>
+  </form>
+  <section class="confirmation" id="confirmation" role="status" aria-live="polite">
+    <div class="big-check" aria-hidden="true">🎁</div>
+    <h2>Your order is on its way!</h2>
+    <p>Thanks for sending a little festive cheer. Your order has been submitted successfully.</p>
+    <p id="confirmation-summary"></p>
+    <button type="button" id="new-order">Start another order</button>
+  </section>
+  <footer><div class="stars" aria-hidden="true">✦ ❄ ✦</div><div>Made with a sprinkle of Christmas magic.</div><div class="snow">Stay cosy, stay merry.</div></footer>
+</main>
+
+<script>
+(() => {
+  const form = document.getElementById('christmas-order');
+  const boxes = [...form.querySelectorAll('input[type="checkbox"][data-name]')];
+  const hiddenSelected = document.getElementById('selected-drinks');
+  const hiddenSummary = document.getElementById('order-summary');
+  const message = document.getElementById('form-message');
+  const basketLines = document.getElementById('basket-lines');
+  const basketCount = document.getElementById('basket-count');
+  const confirmation = document.getElementById('confirmation');
+  const confirmationSummary = document.getElementById('confirmation-summary');
+  const submitButton = form.querySelector('button[type="submit"]');
+
+  function getSelected() {
+    return boxes.filter(box => box.checked).map(box => {
+      const qtyInput = form.querySelector(`[data-qty="${box.name}"]`);
+      const qty = Math.max(1, Math.min(20, Number.parseInt(qtyInput.value, 10) || 1));
+      return { name: box.dataset.name, qty };
+    });
+  }
+  function updateOrder() {
+    const selected = getSelected();
+    basketLines.replaceChildren();
+    if (!selected.length) {
+      const li = document.createElement('li');
+      const text = document.createElement('span');
+      text.textContent = 'Your basket is waiting for a little Christmas magic.';
+      li.append(text);
+      basketLines.appendChild(li);
+    } else {
+      selected.forEach(item => {
+        const li = document.createElement('li');
+        const name = document.createElement('span');
+        name.textContent = `${item.name} × ${item.qty}`;
+        li.append(name);
+        basketLines.appendChild(li);
+      });
+    }
+    const count = selected.reduce((sum, item) => sum + item.qty, 0);
+    basketCount.textContent = `${count} ${count === 1 ? 'drink' : 'drinks'}`;
+    hiddenSelected.value = selected.map(item => `${item.name} x ${item.qty}`).join(', ');
+    hiddenSummary.value = selected.length
+      ? selected.map(item => `${item.name} x ${item.qty}`).join('\n')
+      : 'No drinks selected';
+    return { selected };
+  }
+  boxes.forEach(box => box.addEventListener('change', updateOrder));
+  form.querySelectorAll('[data-qty]').forEach(input => input.addEventListener('input', updateOrder));
+
+  form.addEventListener('submit', async event => {
+    event.preventDefault();
+    const { selected } = updateOrder();
+    if (!selected.length) {
+      message.textContent = 'Please choose at least one drink before sending your order.';
+      message.style.color = '#a8273b';
+      return;
+    }
+    if (form.action.includes('YOUR_FORM_ID')) {
+      message.textContent = 'Almost ready! Replace YOUR_FORM_ID in the form action with your Formspree form ID first.';
+      message.style.color = '#a8273b';
+      return;
+    }
+    submitButton.disabled = true;
+    submitButton.textContent = 'Sending your festive order…';
+    message.textContent = '';
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (!response.ok) throw new Error('Form submission failed');
+      confirmationSummary.textContent = `Your selected drinks: ${selected.map(item => `${item.name} × ${item.qty}`).join(', ')}. Thanks for your festive order!`;
+      confirmation.classList.add('show');
+      form.querySelector('.order-panel').hidden = true;
+      confirmation.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } catch (error) {
+      message.textContent = 'We couldn’t send that just now. Please check your Formspree form ID and internet connection, then try again.';
+      message.style.color = '#a8273b';
+    } finally {
+      submitButton.disabled = false;
+      submitButton.textContent = 'Send my festive order 🎄';
+    }
+  });
+
+  document.getElementById('new-order').addEventListener('click', () => {
+    form.reset();
+    confirmation.classList.remove('show');
+    form.querySelector('.order-panel').hidden = false;
+    message.textContent = '';
+    updateOrder();
+    form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  function updateCountdown() {
+    const now = new Date();
+    let christmas = new Date(now.getFullYear(), 11, 25, 0, 0, 0);
+    if (now >= christmas) christmas = new Date(now.getFullYear() + 1, 11, 25, 0, 0, 0);
+    const ms = christmas - now;
+    const days = Math.floor(ms / 86400000);
+    const hours = Math.floor(ms / 3600000) % 24;
+    const minutes = Math.floor(ms / 60000) % 60;
+    const seconds = Math.floor(ms / 1000) % 60;
+    document.getElementById('christmas-countdown').textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  const snowLayer = document.getElementById('snow-layer');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reducedMotion) {
+    function addSnowflake() {
+      const flake = document.createElement('span');
+      flake.className = 'snowflake';
+      flake.textContent = Math.random() > 0.5 ? '❄' : '•';
+      flake.style.left = `${Math.random() * 100}%`;
+      flake.style.fontSize = `${8 + Math.random() * 12}px`;
+      flake.style.opacity = `${0.35 + Math.random() * 0.55}`;
+      flake.style.animationDuration = `${7 + Math.random() * 9}s`;
+      flake.style.setProperty('--drift', `${Math.round(Math.random() * 140 - 70)}px`);
+      snowLayer.appendChild(flake);
+      setTimeout(() => flake.remove(), 17000);
+    }
+    for (let i = 0; i < 12; i++) setTimeout(addSnowflake, i * 250);
+    setInterval(addSnowflake, 650);
+  }
+  updateOrder();
+})();
+</script>
+</body>
+</html>
