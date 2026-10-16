@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#123b2d">
-<title>Christmas Drinks menu </title>
+<title>Christmas Drinks Menu</title>
 <style>
   :root {
     --pine: #123b2d;
     --pine-light: #1d5941;
-    --berry: #a8273b;
+    --berry: #8f343b;
     --gold: #e7c779;
     --cream: #fff8e9;
     --paper: #fffdf7;
@@ -28,12 +28,12 @@
     font-family: Georgia, "Times New Roman", serif;
   }
   .topline { height: 8px; background: repeating-linear-gradient(90deg,var(--berry) 0 42px,var(--gold) 42px 48px,var(--pine) 48px 90px); }
-  header { text-align: center; padding: 38px 18px 28px; background: var(--pine); color: var(--cream); position: relative; overflow: hidden; }
+  header { text-align: center; padding: 30px 18px 27px; background: var(--pine); color: var(--cream); position: relative; overflow: hidden; }
   header:before, header:after { content: "✦"; position:absolute; color:var(--gold); font-size:30px; opacity:.8; top:24px; }
   header:before { left: max(8%, calc(50% - 280px)); }
   header:after { right: max(8%, calc(50% - 280px)); }
   .eyebrow { color: var(--gold); text-transform: uppercase; letter-spacing: .22em; font: 700 11px/1.5 Arial,sans-serif; }
-  h1 { margin: 9px 0 8px; font-size: clamp(2.5rem, 7vw, 4.6rem); font-weight: 500; line-height: 1; }
+  h1 { margin: 9px 0 8px; font-size: clamp(2.4rem, 7vw, 3.8rem); font-weight: 500; line-height: 1; }
   h1 span { color: var(--gold); font-style: italic; }
   .subtitle { margin: 0 auto; max-width: 520px; line-height: 1.6; color: #f5ead2; font-size: 1.02rem; }
   .garland { color: var(--gold); letter-spacing: .65em; font-size: 1.15rem; margin-top: 18px; }
@@ -87,13 +87,11 @@
     header { padding-top:34px; }
     header:before { left:8px; } header:after { right:8px; }
   }
-  .fairy-lights { display:flex; justify-content:center; gap:clamp(12px,3vw,28px); padding:12px 8px 3px; background:#0b2c21; }
-  .bulb { width:10px; height:15px; border-radius:50% 50% 45% 45%; display:block; background:#f4d77c; box-shadow:0 0 12px currentColor; color:#f4d77c; animation:twinkle 1.8s ease-in-out infinite alternate; }
-  .bulb:nth-child(3n+2) { background:#e85a69; color:#e85a69; animation-delay:.45s; }
-  .bulb:nth-child(3n) { background:#6fc79a; color:#6fc79a; animation-delay:.9s; }
+  .fairy-lights { display:flex; justify-content:center; gap:clamp(16px,3vw,30px); padding:8px; background:#0b2c21; }
+  .bulb { width:10px; height:15px; border-radius:50% 50% 45% 45%; display:block; background:#f4d77c; box-shadow:0 0 12px currentColor; color:#f4d77c; animation:twinkle 3.5s ease-in-out infinite alternate; }
+  .bulb:nth-child(3n+2) { background:#e85a69; color:#e85a69; animation-delay:.8s; }
+  .bulb:nth-child(3n) { background:#6fc79a; color:#6fc79a; animation-delay:1.6s; }
   @keyframes twinkle { from { opacity:.55; filter:brightness(.8); } to { opacity:1; filter:brightness(1.35); } }
-  .countdown { display:inline-flex; align-items:center; gap:8px; margin-top:18px; padding:9px 14px; border:1px solid rgba(231,199,121,.5); border-radius:999px; color:#fff3d0; font: .86rem Arial,sans-serif; }
-  .countdown strong { color:var(--gold); font-variant-numeric:tabular-nums; }
   #snow-layer { pointer-events:none; position:fixed; inset:0; z-index:20; overflow:hidden; }
   .snowflake { position:absolute; top:-20px; color:#fff; text-shadow:0 0 5px rgba(255,255,255,.7); user-select:none; animation:fall linear forwards; }
   @keyframes fall { to { transform:translate3d(var(--drift),110vh,0) rotate(360deg); opacity:.15; } }
@@ -118,22 +116,21 @@
 <div class="fairy-lights" aria-hidden="true"><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span></div>
 <div id="snow-layer" aria-hidden="true"></div>
 <header>
-  <div class="eyebrow">A little Christmas magic</div>
-  <h1>The Holly <span>&</span> Hearth</h1>
-  <p class="subtitle">A festive little drinks menu for frosty evenings, twinkling lights and cosy moments.</p>
-  <div class="garland" aria-hidden="true">✦ ❄ ✦ ❄ ✦</div>
-  <div class="countdown">🎄 Christmas countdown <strong id="christmas-countdown">Loading…</strong></div>
+  <div class="eyebrow">Christmas Day</div>
+  <h1>Christmas <span>Drinks</span></h1>
+  <p class="subtitle">Choose what you’d like and send your order to the kitchen.</p>
+
 </header>
 
 <main>
-  <p class="intro">Pick your favourite <strong>seasonal sips</strong>, tell us how you'd like them, and send your order straight to the North Pole… well, to the menu maker!</p>
+  <p class="intro">Choose your drinks below, set the quantities, then send your order.</p>
 
   <form id="christmas-order" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-    <input type="hidden" name="_subject" value="A new order from The Holly & Hearth Christmas Drinks Menu">
+    <input type="hidden" name="_subject" value="Christmas Day drinks order">
     <input type="hidden" name="Selected drinks" id="selected-drinks" value="">
     <input type="hidden" name="Order summary" id="order-summary" value="">
 
-    <div class="section-heading"><h2>☕ Warm & Wonderful</h2></div>
+    <div class="section-heading"><h2>Hot drinks</h2></div>
     <div class="drinks">
       <article class="drink">
         <div class="drink-top"><div class="emoji" aria-hidden="true">☕</div><div><h3>Classic Hot Chocolate</h3><p>Rich chocolate, fluffy marshmallows and a cloud of whipped cream.</p></div></div>
@@ -153,7 +150,7 @@
       </article>
     </div>
 
-    <div class="section-heading"><h2>❄ Chilled & Cheerful</h2></div>
+    <div class="section-heading"><h2>Cold drinks</h2></div>
     <div class="drinks">
       <article class="drink">
         <div class="drink-top"><div class="emoji" aria-hidden="true">🍓</div><div><h3>Winter Berry Fizz</h3><p>Berry cordial, sparkling lemonade and a few frozen berries.</p></div></div>
@@ -166,32 +163,32 @@
     </div>
 
     <section class="order-panel">
-      <h2>Make it merry ✨</h2>
-      <p class="hint">Add your details and any little tweaks. Fields marked * are required.</p>
+      <h2>Your order</h2>
+      <p class="hint">Add your name and any notes for the person making your drinks.</p>
       <div class="fields">
-        <div class="field"><label for="customer-name">Your name *</label><input id="customer-name" name="Name" type="text" autocomplete="name" required placeholder="Santa… or your name"></div>
+        <div class="field"><label for="customer-name">Your name *</label><input id="customer-name" name="Name" type="text" autocomplete="name" required placeholder="Your name"></div>
 <div class="field full"><label for="notes">Special requests or allergy notes</label><textarea id="notes" name="Special requests" placeholder="Any swaps, toppings or notes…"></textarea></div>
       </div>
       <div class="summary" aria-live="polite">
-        <div class="basket-title"><strong>🧺 Your festive basket</strong><span class="basket-count" id="basket-count">0 drinks</span></div>
-        <ul class="basket-lines" id="basket-lines"><li><span>Your basket is waiting for a little Christmas magic.</span><span>—</span></li></ul>
+        <div class="basket-title"><strong>Your selection</strong><span class="basket-count" id="basket-count">0 drinks</span></div>
+        <ul class="basket-lines" id="basket-lines"><li><span>No drinks selected yet.</span><span>—</span></li></ul>
         <span id="summary-text" hidden>Choose one or more drinks above to get started.</span>
       </div>
       <div class="submit-row">
-        <button type="submit">Send my festive order 🎄</button>
-        <span class="privacy">This demo sends the form to your Formspree inbox once you connect your own form endpoint below.</span>
+        <button type="submit">Send order</button>
+        <span class="privacy">Your order will be sent to the family inbox.</span>
       </div>
       <p id="form-message" role="status" aria-live="polite"></p>
     </section>
   </form>
   <section class="confirmation" id="confirmation" role="status" aria-live="polite">
     <div class="big-check" aria-hidden="true">🎁</div>
-    <h2>Your order is on its way!</h2>
-    <p>Thanks for sending a little festive cheer. Your order has been submitted successfully.</p>
+    <h2>Order sent</h2>
+    <p>Your drinks order has been sent.</p>
     <p id="confirmation-summary"></p>
-    <button type="button" id="new-order">Start another order</button>
+    <button type="button" id="new-order">Place another order</button>
   </section>
-  <footer><div class="stars" aria-hidden="true">✦ ❄ ✦</div><div>Made with a sprinkle of Christmas magic.</div><div class="snow">Stay cosy, stay merry.</div></footer>
+  <footer><div>Christmas Day drinks</div></footer>
 </main>
 
 <script>
@@ -220,7 +217,7 @@
     if (!selected.length) {
       const li = document.createElement('li');
       const text = document.createElement('span');
-      text.textContent = 'Your basket is waiting for a little Christmas magic.';
+      text.textContent = 'No drinks selected yet.';
       li.append(text);
       basketLines.appendChild(li);
     } else {
@@ -257,7 +254,7 @@
       return;
     }
     submitButton.disabled = true;
-    submitButton.textContent = 'Sending your festive order…';
+    submitButton.textContent = 'Sending order…';
     message.textContent = '';
     try {
       const response = await fetch(form.action, {
@@ -266,7 +263,7 @@
         headers: { 'Accept': 'application/json' }
       });
       if (!response.ok) throw new Error('Form submission failed');
-      confirmationSummary.textContent = `Your selected drinks: ${selected.map(item => `${item.name} × ${item.qty}`).join(', ')}. Thanks for your festive order!`;
+      confirmationSummary.textContent = `Your selected drinks: ${selected.map(item => `${item.name} × ${item.qty}`).join(', ')}. Order sent.`;
       confirmation.classList.add('show');
       form.querySelector('.order-panel').hidden = true;
       confirmation.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -275,7 +272,7 @@
       message.style.color = '#a8273b';
     } finally {
       submitButton.disabled = false;
-      submitButton.textContent = 'Send my festive order 🎄';
+      submitButton.textContent = 'Send order';
     }
   });
 
@@ -287,20 +284,6 @@
     updateOrder();
     form.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
-
-  function updateCountdown() {
-    const now = new Date();
-    let christmas = new Date(now.getFullYear(), 11, 25, 0, 0, 0);
-    if (now >= christmas) christmas = new Date(now.getFullYear() + 1, 11, 25, 0, 0, 0);
-    const ms = christmas - now;
-    const days = Math.floor(ms / 86400000);
-    const hours = Math.floor(ms / 3600000) % 24;
-    const minutes = Math.floor(ms / 60000) % 60;
-    const seconds = Math.floor(ms / 1000) % 60;
-    document.getElementById('christmas-countdown').textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-  }
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
 
   const snowLayer = document.getElementById('snow-layer');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
